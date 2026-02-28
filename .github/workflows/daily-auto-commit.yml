@@ -17,12 +17,9 @@ jobs:
     
     - name: Create update file
       run: |
-        echo "===================================" > daily-update.txt
-        echo "WebEngineering Auto Commit" >> daily-update.txt
-        echo "===================================" >> daily-update.txt
-        echo "Date: $(date)" >> daily-update.txt
+        echo "WebEngineering Auto Commit" > daily-update.txt
+        echo "Last updated: $(date)" >> daily-update.txt
         echo "Commit #: ${{ github.run_number }}" >> daily-update.txt
-        echo "===================================" >> daily-update.txt
     
     - name: Commit changes
       run: |
