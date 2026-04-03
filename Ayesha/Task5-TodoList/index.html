@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List - Ayesha</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 550px;
+            max-width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+        
+        h1 i {
+            color: #667eea;
+            margin-right: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .add-task {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .add-task input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .add-task input:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.1);
+        }
+        
+        .add-task button {
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 0 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .add-task button:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .add-task button i {
+            font-size: 18px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            color: #667eea;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .filter-btn:hover {
+            background: #e2e8f0;
+        }
+        
+        .filter-btn.active:hover {
+            background: #5a67d8;
+        }
+        
+        .tasks-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .task-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .task-item.completed {
+            background: #f0fff4;
+            opacity: 0.8;
+        }
+        
+        .task-checkbox {
+            margin-right: 15px;
+        }
+        
+        .task-checkbox input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #48bb78;
+        }
+        
+        .task-content {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+            word-break: break-word;
+        }
+        
+        .task-title.completed-text {
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .task-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .task-meta i {
+            margin-right: 3px;
+        }
+        
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .task-actions button {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        
+        .complete-btn {
+            color: #48bb78;
+        }
+        
+        .complete-btn:hover {
+            background: #f0fff4;
+            transform: scale(1.1);
+        }
+        
+        .delete-btn {
+            color: #f56565;
+        }
+        
+        .delete-btn:hover {
+            background: #fff5f5;
+            transform: scale(1.1);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+        
+        .clear-all {
+            margin-top: 20px;
+            text-align: right;
+        }
+        
+        .clear-all button {
+            background: none;
+            border: 1px solid #f56565;
+            color: #f56565;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .clear-all button:hover {
+            background: #f56565;
+            color: white;
+        }
+        
+        .clear-all button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: #ccc;
+            color: #ccc;
+        }
+        
+        .clear-all button:disabled:hover {
+            background: none;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <i class="fa-solid fa-list-check"></i> To-Do List
+        </h1>
+        <p class="subtitle">Manage your tasks with Ayesha's Todo App</p>
+        
+        <div class="add-task">
+            <input type="text" id="taskInput" placeholder="Enter a new task..." maxlength="100">
+            <button id="addBtn">
+                <i class="fa-solid fa-plus"></i> Add
+            </button>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total</div>
+                <div class="stat-value" id="totalTasks">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Completed</div>
+                <div class="stat-value" id="completedTasks">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Pending</div>
+                <div class="stat-value" id="pendingTasks">0</div>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <button class="filter-btn active" id="showAll">
+                <i class="fa-solid fa-list"></i> All
+            </button>
+            <button class="filter-btn" id="showPending">
+                <i class="fa-solid fa-clock"></i> Pending
+            </button>
+            <button class="filter-btn" id="showCompleted">
+                <i class="fa-solid fa-check-circle"></i> Completed
+            </button>
+        </div>
+        
+        <div class="tasks-container" id="tasksContainer">
+            <div class="empty-state" id="emptyState">
+                <i class="fa-solid fa-clipboard-list"></i>
+                <p>No tasks yet. Add your first task!</p>
+            </div>
+        </div>
+        
+        <div class="clear-all">
+            <button id="clearAllBtn" disabled>
+                <i class="fa-solid fa-trash-can"></i> Clear All
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
