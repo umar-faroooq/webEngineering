@@ -1,0 +1,56 @@
+/* Clean and simple styling for a two-part UI */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+h1 { color: #2c3e50; margin-top: 0; }
+p { color: #555; font-size: 15px; margin-bottom: 25px; }
+
+.test-section {
+    margin-top: 20px;
+    text-align: left;
+}
+
+h3 {
+    margin: 0 0 8px 0;
+    font-size: 17px;
+    color: #333;
+}
+
+/* Base box styling */
+.output-box {
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1.05em;
+    line-height: 1.4;
+}
+
+/* Green box for success */
+.success {
+    background-color: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    color: #2e7d32;
+}
+
+/* Red box for errors */
+.error {
+    background-color: #ffebee;
+    border: 1px solid #ef9a9a;
+    color: #c62828;
+}
