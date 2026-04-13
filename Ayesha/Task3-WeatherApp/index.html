@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App - Ayesha</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #2b6c8f 0%, #6b4e8f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            width: 450px;
+            backdrop-filter: blur(10px);
+        }
+        
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .search-section {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            border-color: #6b4e8f;
+            box-shadow: 0 0 10px rgba(107, 78, 143, 0.2);
+        }
+        
+        button {
+            background: #6b4e8f;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            background: #2b6c8f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(43, 108, 143, 0.4);
+        }
+        
+        .loading {
+            text-align: center;
+            color: #6b4e8f;
+            font-size: 18px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .loading i {
+            margin-right: 8px;
+        }
+        
+        .weather-card {
+            background: linear-gradient(145deg, #f8f9fa, #ffffff);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        .city-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .country {
+            color: #666;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .temp-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .temperature {
+            font-size: 52px;
+            font-weight: bold;
+            background: linear-gradient(145deg, #2b6c8f, #6b4e8f);
+         -webkit-background-clip: text;
+background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feels-like {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .condition {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .condition i {
+            font-size: 40px;
+            color: #6b4e8f;
+        }
+        
+        .condition-text {
+            font-size: 22px;
+            color: #444;
+            text-transform: capitalize;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #ddd;
+        }
+        
+        .detail-item {
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .detail-label {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2b6c8f;
+        }
+        
+        .error-message {
+            background: #fee;
+            color: #c44;
+            padding: 15px;
+            border-radius: 50px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid #fcc;
+            display: none;
+        }
+        
+        .error-message i {
+            margin-right: 8px;
+        }
+        
+        .recent-searches {
+            margin-top: 20px;
+        }
+        
+        .recent-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .recent-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .recent-city {
+            background: #f0f0f0;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: #555;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .recent-city:hover {
+            background: #6b4e8f;
+            color: white;
+        }
+        
+        .fa-spinner {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>
+            <i class="fa-solid fa-cloud-sun"></i> Weather App
+        </h2>
+        
+        <div class="search-section">
+            <input type="text" id="cityInput" placeholder="Enter city (e.g. London, Tokyo)">
+            <button onclick="getWeather()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        
+        <div id="loading" class="loading">
+            <i class="fa-solid fa-spinner fa-spin"></i> Loading
+        </div>
+        
+        <div id="error" class="error-message">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span></span>
+        </div>
+        
+        <div id="weatherCard" class="weather-card" style="display: none;"></div>
+        
+        <div id="recentSearches" class="recent-searches" style="display: none;">
+            <div class="recent-title">
+                <i class="fa-regular fa-clock"></i> Recent Searches:
+            </div>
+            <div class="recent-buttons" id="recentButtons"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

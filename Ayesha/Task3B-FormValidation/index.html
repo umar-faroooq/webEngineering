@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation - Ayesha</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 450px;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        
+        h2 i {
+            color: #667eea;
+            margin-right: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        label i {
+            margin-right: 8px;
+            color: #667eea;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.1);
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .error-message i {
+            margin-right: 5px;
+            font-size: 12px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .success-message {
+            text-align: center;
+            color: #27ae60;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0fff4;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .success-message i {
+            margin-right: 8px;
+        }
+        
+        .password-requirements {
+            font-size: 13px;
+            color: #777;
+            margin-top: 5px;
+            padding-left: 5px;
+        }
+        
+        .requirement {
+            margin: 3px 0;
+        }
+        
+        .requirement.valid {
+            color: #27ae60;
+        }
+        
+        .requirement.invalid {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>
+            <i class="fa-solid fa-user-check"></i> Registration Form
+        </h2>
+        
+        <form id="registrationForm" novalidate>
+            <div class="form-group">
+                <label><i class="fa-solid fa-user"></i> Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name">
+                <div id="nameError" class="error-message">
+                    <i class="fa-solid fa-circle-exclamation"></i> Name is required
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email">
+                <div id="emailError" class="error-message">
+                    <i class="fa-solid fa-circle-exclamation"></i> Valid email required
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label><i class="fa-solid fa-lock"></i> Password</label>
+                <input type="password" id="password" placeholder="Create a password">
+                <div id="passwordError" class="error-message">
+                    <i class="fa-solid fa-circle-exclamation"></i> Password must be at least 8 characters
+                </div>
+                <div class="password-requirements" id="passwordRequirements">
+                    <div class="requirement invalid" id="lengthReq">
+                        <i class="fa-solid fa-circle"></i> At least 8 characters
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" id="submitBtn">
+                <i class="fa-solid fa-paper-plane"></i> Register
+            </button>
+        </form>
+        
+        <div id="successMessage" class="success-message">
+            <i class="fa-solid fa-circle-check"></i> Form submitted successfully!
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
