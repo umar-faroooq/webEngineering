@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Dark Mode Default (Midnight Sapphire) */
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #111133;
+  --bg-card: #16163a;
+  --bg-glass: rgba(22, 22, 58, 0.7);
+  
+  --accent-primary: #6c63ff;
+  --accent-secondary: #00d4ff;
+  --accent-gradient: linear-gradient(135deg, #6c63ff, #00d4ff);
+  --accent-rgb: 108, 99, 255;
+  --accent-secondary-rgb: 0, 212, 255;
+  
+  --text-primary: #e8e8f0;
+  --text-secondary: #8888aa;
+  
+  --border-color: rgba(108, 99, 255, 0.2);
+  --glow: 0 0 30px rgba(108, 99, 255, 0.3);
+
+  --section-gap: 0px;
+}
+
+[data-theme='light'] {
+  --bg-primary: #f5f5ff;
+  --bg-secondary: #eeeef8;
+  --bg-card: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.8);
+  
+  --accent-primary: #5a52d5;
+  --accent-secondary: #00a4c9;
+  --accent-gradient: linear-gradient(135deg, #5a52d5, #00a4c9);
+  --accent-rgb: 90, 82, 213;
+  --accent-secondary-rgb: 0, 164, 201;
+  
+  --text-primary: #1a1a2e;
+  --text-secondary: #555577;
+  
+  --border-color: rgba(90, 82, 213, 0.2);
+  --glow: 0 0 20px rgba(90, 82, 213, 0.2);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* ============================================
+   SCROLL-TRIGGERED ANIMATIONS
+   ============================================ */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+.fade-left {
+  transform: translateX(-50px);
+}
+
+.fade-right {
+  transform: translateX(50px);
+}
+
+.fade-in {
+  transform: none;
+  opacity: 0;
+}
+
+.fade-up {
+  transform: translateY(40px);
+}
+
+/* Staggered children animation */
+.stagger-children .animate-on-scroll:nth-child(1) { transition-delay: 0.05s; }
+.stagger-children .animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+.stagger-children .animate-on-scroll:nth-child(3) { transition-delay: 0.15s; }
+.stagger-children .animate-on-scroll:nth-child(4) { transition-delay: 0.2s; }
+.stagger-children .animate-on-scroll:nth-child(5) { transition-delay: 0.25s; }
+.stagger-children .animate-on-scroll:nth-child(6) { transition-delay: 0.3s; }
+.stagger-children .animate-on-scroll:nth-child(7) { transition-delay: 0.35s; }
+.stagger-children .animate-on-scroll:nth-child(8) { transition-delay: 0.4s; }
+
+/* ============================================
+   SECTION UTILITIES
+   ============================================ */
+.section-padding {
+  padding: 120px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-align: center;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent-gradient);
+  border-radius: 2px;
+  margin: 1rem auto 2rem;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.4);
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Selection color */
+::selection {
+  background: rgba(var(--accent-rgb), 0.3);
+  color: var(--text-primary);
+}
