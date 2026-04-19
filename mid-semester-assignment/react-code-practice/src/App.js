@@ -19,6 +19,7 @@ function App() {
         <button style={{ backgroundColor: '#FF0000', color: 'white' }}onClick={() => setCount(count - 1)}>Decrement</button>
       </div>
     </div>
+   
   );
 }
 

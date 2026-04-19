@@ -185,3 +185,6 @@ output.innerHTML = `<span class="text-danger">Error handled: ${err}</span>`;
 function hideTable(){
 document.getElementById("userTable").classList.add("d-none");
 }
+
+
+
