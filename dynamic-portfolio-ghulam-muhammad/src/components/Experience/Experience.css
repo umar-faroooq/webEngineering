@@ -1,0 +1,108 @@
+.experience-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.experience-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem 2rem 2rem 2.5rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated gradient left border */
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent-gradient);
+  background-size: 100% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.experience-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent-rgb), 0.04),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.experience-card:hover::after {
+  opacity: 1;
+}
+
+.experience-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(var(--accent-rgb), 0.12);
+  border-color: rgba(var(--accent-rgb), 0.3);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.exp-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.exp-icon {
+  font-size: 1.5rem;
+  color: var(--accent-primary);
+}
+
+.exp-title h3 {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.exp-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--accent-secondary);
+  background: rgba(var(--accent-secondary-rgb), 0.1);
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-weight: 500;
+  border: 1px solid rgba(var(--accent-secondary-rgb), 0.2);
+}
+
+.company-name {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.exp-description {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}

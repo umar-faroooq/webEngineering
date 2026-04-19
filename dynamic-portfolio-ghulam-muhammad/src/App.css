@@ -1,0 +1,40 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+main {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Every section gets a semi-transparent background so text is readable over the particles */
+main > section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtle section separator */
+main > section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80%, 600px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--accent-rgb), 0.3) 50%,
+    transparent 100%
+  );
+}
+
+/* Don't show separator on hero */
+main > section:first-child::before {
+  display: none;
+}
