@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mid-Semester Assignment - Ayesha</title>
+    <!-- React & Babel CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+    <style>
+        /* same CSS as before – you can keep it inline or move to style.css */
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e66; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+        pre { background: #f4f4f4; padding: 12px; border-radius: 10px; overflow-x: auto; }
+        button { background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin-top: 10px; }
+        .react-counter { background: #ecf0f1; padding: 15px; border-radius: 12px; margin-top: 20px; }
+        .output { background: #e9f7ef; padding: 12px; border-radius: 8px; margin: 15px 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📘 Mid-Semester Assignment – JavaScript & React</h1>
+    <p>Name: Ayesha | Course: Web Engineering</p>
+
+    <h2>1️⃣ ES6 Features & Classes</h2>
+    <div id="es6-output" class="output"></div>
+
+    <h2>2️⃣ JSON Data Handling</h2>
+    <div id="json-output" class="output"></div>
+
+    <h2>3️⃣ Fetch API – First 5 Post Titles</h2>
+    <div id="fetch-posts" class="output">Loading...</div>
+
+    <h2>4️⃣ Async & Error Handling</h2>
+    <button id="fetch-users">✅ Fetch Users (success)</button>
+    <button id="fetch-wrong">❌ Fetch Wrong URL (error)</button>
+    <div id="async-output" class="output">Click a button above</div>
+
+    <h2>5️⃣ React useState – Counter</h2>
+    <div id="react-root"></div>
+</div>
+
+<!-- Separate JavaScript file -->
+<script src="script.js"></script>
+</body>
+</html>

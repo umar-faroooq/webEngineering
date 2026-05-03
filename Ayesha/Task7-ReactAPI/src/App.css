@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fefefe;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ========= HEADING – NO BORDER ========= */
+.page-heading {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-heading h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7c3aed, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.3px;
+}
+
+.page-heading p {
+  color: #6b21a5;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+/* ========= LOADING ========= */
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  color: #6b21a5;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 5px solid #e9d5ff;
+  border-top-color: #a855f7;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========= ERROR ========= */
+.error-screen {
+  text-align: center;
+  background: #fae8ff;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 500px;
+  margin: 4rem auto;
+  border: 1px solid #d8b4fe;
+  color: #86198f;
+}
+
+.error-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.error-screen button {
+  background: #a855f7;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.8rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.error-screen button:hover {
+  background: #7e22ce;
+}
+
+/* ========= POST GRID ========= */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+/* ========= POST CARD – PURPLE BORDER ONLY (no extra lines) ========= */
+.post-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 2px solid #a855f7;   /* purple border around entire card */
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -10px rgba(168, 85, 247, 0.2);
+  border-color: #7c3aed;
+}
+
+.post-badge {
+  display: inline-block;
+  background: #f3e8ff;
+  color: #6b21a5;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.25rem 0.7rem;
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+}
+
+.post-card h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #2e1a47;
+  text-transform: capitalize;
+  word-break: break-word;
+}
+
+.post-card p {
+  color: #4a1d6d;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #f0e6ff;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  color: #9333ea;
+  font-weight: 500;
+}
+
+.post-footer span:first-child {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.post-footer span:first-child:hover {
+  color: #6b21a5;
+}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 720px) {
+  .page-heading h1 {
+    font-size: 2rem;
+  }
+  .posts-grid {
+    gap: 1.2rem;
+  }
+  .post-card {
+    padding: 1.2rem;
+  }
+}
